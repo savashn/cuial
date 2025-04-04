@@ -89,7 +89,7 @@
 	</label>
 
 	<div class="buttons">
-		<button class="save-btn">Save Changes</button>
+		<button>Save Changes</button>
 		<button class="delete-btn" formaction="?/delete">Delete My Account</button>
 	</div>
 </form>

@@ -114,7 +114,7 @@ export const actions = {
 			return (editProfile = false), (changePassword = true), fail(400, { errors });
 		}
 
-		const res = await fetch(`${API_URI}/put/change-password`, {
+		const res = await fetch(`${API_URI}/put/password`, {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json', 'x-auth-token': `${token}` },
 			body: JSON.stringify({ newPassword, oldPassword })

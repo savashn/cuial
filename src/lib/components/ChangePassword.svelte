@@ -53,7 +53,7 @@
 		<br />
 		<input
 			name="rePassword"
-			type="rePassword"
+			type="password"
 			class={form?.formType === 'password' && form?.errors?.rePassword ? 'error' : ''}
 			placeholder={form?.formType === 'password' && form?.errors?.rePassword
 				? form.errors.rePassword
@@ -62,6 +62,6 @@
 	</label>
 
 	<div class="buttons">
-		<button class="save-btn">Save Changes</button>
+		<button>Save Changes</button>
 	</div>
 </form>
