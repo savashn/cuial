@@ -42,7 +42,8 @@ label {
 	text-align: center;
 	background-color: transparent;
 	font-weight: bold;
-	width: 70%;
+	width: 90%;
+	padding: 0.5rem;
 	max-height: 10rem;
 	margin: auto;
 	border: 2px solid;

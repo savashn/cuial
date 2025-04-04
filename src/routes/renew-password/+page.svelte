@@ -2,7 +2,7 @@
 	import type { PageProps } from './$types';
 	import '../../lib/styles/form.css';
 	import '../../lib/styles/button.css';
-	// import { goto } from '$app/navigation';
+	import { goto } from '$app/navigation';
 
 	let { data, form }: PageProps = $props();
 	let countdown = $state(5);
@@ -15,7 +15,7 @@
 				countdown--;
 				if (countdown === 0) {
 					clearInterval(interval);
-					// goto('/'); // Yönlendirme işlemi aktif edilebilir
+					goto('/');
 				}
 			}, 1000);
 		}
