@@ -21,16 +21,7 @@
 			{form.msg}
 		</div>
 	{/if}
-	<label>
-		Title
-		<br />
-		<input
-			name="title"
-			type="title"
-			class={form?.formType === 'post' && form?.errors?.title ? 'error' : ''}
-			placeholder={form?.formType === 'post' && form?.errors?.title ? form.errors.title : ''}
-		/>
-	</label>
+
 	<label>
 		To
 		<br />

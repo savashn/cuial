@@ -8,13 +8,11 @@
 	let openId = $state<string | null>(null);
 	let editingId = $state<number | null>(null);
 
-	let editedValues = $state<
-		Record<string, { title: string; to: string; subject: string; text: string }>
-	>({});
+	let editedValues = $state<Record<string, { to: string; subject: string; text: string }>>({});
 
-	function startEditing(id: number, title: string, to: string, subject: string, text: string) {
+	function startEditing(id: number, to: string, subject: string, text: string) {
 		editingId = id;
-		editedValues[id] = { title, to, subject, text };
+		editedValues[id] = { to, subject, text };
 	}
 </script>
 
@@ -29,7 +27,7 @@
 				class={`accordion-header ${openId === v._id ? 'active' : ''}`}
 				onclick={() => (openId = openId === v._id ? null : v._id)}
 			>
-				<p>{v.title}</p>
+				<p>{v.subject}</p>
 				<span>{openId === v._id ? '▲' : '▼'}</span>
 			</button>
 			<div class="accordion-content" style="max-height: {openId === v._id ? '100vh' : '0'};">
@@ -49,20 +47,6 @@
 						{/if}
 
 						<input type="hidden" name="id" value={v._id} />
-
-						<label>
-							Title
-							<br />
-							<input
-								name="title"
-								type="title"
-								value={v.title}
-								class={form?.formType === 'put' && form?.errors?.title ? 'error' : ''}
-								placeholder={form?.formType === 'put' && form?.errors?.title
-									? form.errors.title
-									: ''}
-							/>
-						</label>
 
 						<label>
 							To
@@ -114,9 +98,7 @@
 					<span class="bold">Text:</span>
 					<p class="text">{v.text}</p>
 					<div class="buttons">
-						<button onclick={() => startEditing(v._id, v.title, v.to, v.subject, v.text)}
-							>Edit</button
-						>
+						<button onclick={() => startEditing(v._id, v.to, v.subject, v.text)}>Edit</button>
 					</div>
 				{/if}
 			</div>

@@ -30,7 +30,6 @@ export const load: PageServerLoad = async ({ cookies, fetch }) => {
 export const actions = {
 	post: async ({ request, fetch, cookies }) => {
 		const data = await request.formData();
-		const title = data.get('title');
 		const to = data.get('to');
 		const subject = data.get('subject');
 		const text = data.get('text');
@@ -39,7 +38,6 @@ export const actions = {
 
 		const errors: Record<string, string> = {};
 
-		if (!title) errors.title = 'Message title is required';
 		if (!to) errors.to = 'To is required';
 		if (!subject) errors.subject = 'Subject is required';
 		if (!text) errors.text = 'Text is required';
@@ -51,7 +49,7 @@ export const actions = {
 		const res = await fetch(`${API_URI}/post/message`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json', 'x-auth-token': `${token}` },
-			body: JSON.stringify({ title, to, subject, text })
+			body: JSON.stringify({ to, subject, text })
 		});
 
 		if (!res.ok) {
@@ -73,7 +71,6 @@ export const actions = {
 	put: async ({ request, fetch, cookies }) => {
 		const data = await request.formData();
 		const id = data.get('id');
-		const title = data.get('title');
 		const to = data.get('to');
 		const subject = data.get('subject');
 		const text = data.get('text');
@@ -82,7 +79,6 @@ export const actions = {
 
 		const errors: Record<string, string> = {};
 
-		if (!title) errors.title = 'Message title is required';
 		if (!to) errors.to = 'To is required';
 		if (!subject) errors.subject = 'Subject is required';
 		if (!text) errors.text = 'Text is required';
@@ -94,7 +90,7 @@ export const actions = {
 		const res = await fetch(`${API_URI}/put/message`, {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json', 'x-auth-token': `${token}` },
-			body: JSON.stringify({ id, title, to, subject, text })
+			body: JSON.stringify({ id, to, subject, text })
 		});
 
 		if (!res.ok) {

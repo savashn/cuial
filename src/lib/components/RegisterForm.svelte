@@ -89,10 +89,6 @@
 	}
 
 	@media (max-width: 768px) {
-		.register-form {
-			width: 70%;
-		}
-
 		.form-group {
 			grid-template-columns: 1fr;
 			gap: 0;
