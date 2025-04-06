@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PageProps } from '../../routes/u/$types';
+	import { applyAction, enhance } from '$app/forms';
 	import { fly } from 'svelte/transition';
 	import '$lib/styles/button.css';
 
@@ -35,10 +36,25 @@
 				{#if editingId === v._id}
 					<!-- Editing Mode -->
 
-					<form action="?/put" method="POST">
-						{#if form?.formType === 'put' && form?.errors?.error}
+					<form
+						action="?/put"
+						method="POST"
+						use:enhance={() => {
+							return async ({ result, update }) => {
+								if (result.type === 'success') {
+									editingId = null;
+									update();
+								} else {
+									await applyAction(result);
+								}
+							};
+						}}
+					>
+						{#if form?.formType === 'put' && form?.errors}
 							<div class="msg error">
-								{form.errors.error}
+								{#each Object.entries(form.errors) as [field, message]}
+									<p>{message}</p>
+								{/each}
 							</div>
 						{:else if form?.formType === 'put' && form?.msg}
 							<div class="msg success">
