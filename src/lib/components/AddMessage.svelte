@@ -2,6 +2,7 @@
 	import type { ActionData } from '../../routes/u/$types';
 	import { fly } from 'svelte/transition';
 	import '$lib/styles/form.css';
+	import '$lib/styles/checkbox.css';
 
 	let { form }: { form?: ActionData } = $props();
 </script>
@@ -27,7 +28,7 @@
 		<br />
 		<input
 			name="to"
-			type="to"
+			type="text"
 			class={form?.formType === 'post' && form?.errors?.to ? 'error' : ''}
 			placeholder={form?.formType === 'post' && form?.errors?.to ? form.errors.to : ''}
 		/>
@@ -37,7 +38,7 @@
 		<br />
 		<input
 			name="subject"
-			type="subject"
+			type="text"
 			class={form?.formType === 'post' && form?.errors?.subject ? 'error' : ''}
 			placeholder={form?.formType === 'post' && form?.errors?.subject ? form.errors.subject : ''}
 		/>
@@ -51,7 +52,21 @@
 			placeholder={form?.formType === 'post' && form?.errors?.text ? form.errors.text : ''}
 		></textarea>
 	</label>
-	<button>Save</button>
+	<div class="checkbox-container">
+		<label class="checkbox-label">
+			<input type="checkbox" name="sendInfo" value="true" class="checkbox-input" />
+			<span class="checkbox-custom"></span>
+			<span class="checkbox-text">Send an information email to the receiver</span>
+		</label>
+	</div>
+	<div class="checkbox-container">
+		<label class="checkbox-label">
+			<input type="checkbox" name="sendPreview" value="true" class="checkbox-input" />
+			<span class="checkbox-custom"></span>
+			<span class="checkbox-text">Send me a preview mail of my message</span>
+		</label>
+	</div>
+	<button>SAVE</button>
 </form>
 
 <h3>IMPORTANT!</h3>
@@ -63,7 +78,7 @@
 
 <style>
 	h3 {
-		margin-top: 2rem;
+		margin-top: 3rem;
 		font-size: x-large;
 		color: red;
 	}

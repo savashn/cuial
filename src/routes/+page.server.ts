@@ -56,7 +56,7 @@ export const actions = {
 			return (register = true), (login = false), fail(400, { errors, formType: 'register' });
 		}
 
-		return { formType: 'login', msg: await res.text() };
+		return { register: false, login: true, formType: 'login', msg: await res.text() };
 	},
 	login: async ({ request, fetch, cookies }) => {
 		const formData = await request.formData();

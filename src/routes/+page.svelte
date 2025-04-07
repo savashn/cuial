@@ -56,8 +56,8 @@
 <br />
 
 <div class="buttons">
-	<button onclick={() => openLogin()} class={login ? 'active' : ''}> Login </button>
-	<button onclick={() => openRegister()} class={register ? 'active' : ''}> Register </button>
+	<button onclick={() => openLogin()} class={login ? 'active' : ''}>LOGIN</button>
+	<button onclick={() => openRegister()} class={register ? 'active' : ''}>REGISTER</button>
 </div>
 
 <div class="form-container">

@@ -39,8 +39,8 @@
 </svelte:head>
 
 <div class="buttons">
-	<button onclick={() => openLetters()} class={letters ? 'active' : ''}> My Letters </button>
-	<button onclick={() => openNewLetter()} class={newLetter ? 'active' : ''}> New Letter </button>
+	<button onclick={() => openLetters()} class={letters ? 'active' : ''}>MY LETTERS</button>
+	<button onclick={() => openNewLetter()} class={newLetter ? 'active' : ''}>NEW LETTER</button>
 </div>
 
 {#if letters}

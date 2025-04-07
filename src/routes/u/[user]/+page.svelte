@@ -35,10 +35,10 @@
 </script>
 
 <div class="buttons">
-	<button onclick={() => openProfile()} class={editProfile ? 'active' : ''}> Edit Profile </button>
-	<button onclick={() => openPassword()} class={changePassword ? 'active' : ''}>
-		Change Password
-	</button>
+	<button onclick={() => openProfile()} class={editProfile ? 'active' : ''}>EDIT PROFILE</button>
+	<button onclick={() => openPassword()} class={changePassword ? 'active' : ''}
+		>CHANGE PASSWORD</button
+	>
 </div>
 
 {#if editProfile}

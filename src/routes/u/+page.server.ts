@@ -10,7 +10,7 @@ export const load: PageServerLoad = async ({ cookies, fetch }) => {
 	const token = cookies.get('x-auth-token');
 
 	if (!token) {
-		redirect(304, '/');
+		redirect(302, '/');
 	}
 
 	const res = await fetch(`${API_URI}/messages`, {
@@ -33,6 +33,8 @@ export const actions = {
 		const to = data.get('to');
 		const subject = data.get('subject');
 		const text = data.get('text');
+		const sendInfo = data.get('sendInfo');
+		const sendPreview = data.get('sendPreview');
 
 		const token = cookies.get('x-auth-token');
 
@@ -49,7 +51,7 @@ export const actions = {
 		const res = await fetch(`${API_URI}/post/message`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json', 'x-auth-token': `${token}` },
-			body: JSON.stringify({ to, subject, text })
+			body: JSON.stringify({ to, subject, text, sendInfo, sendPreview })
 		});
 
 		if (!res.ok) {
@@ -74,6 +76,7 @@ export const actions = {
 		const to = data.get('to');
 		const subject = data.get('subject');
 		const text = data.get('text');
+		const sendPreview = data.get('sendPreview');
 
 		const token = cookies.get('x-auth-token');
 
@@ -90,7 +93,7 @@ export const actions = {
 		const res = await fetch(`${API_URI}/put/message`, {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json', 'x-auth-token': `${token}` },
-			body: JSON.stringify({ id, to, subject, text })
+			body: JSON.stringify({ id, to, subject, text, sendPreview })
 		});
 
 		if (!res.ok) {

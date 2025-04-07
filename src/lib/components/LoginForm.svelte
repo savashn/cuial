@@ -59,7 +59,7 @@
 		/>
 	</label>
 	<button type="button" class="forgot" onclick={handleForgotPassword}>Forgot my password</button>
-	<button>Login</button>
+	<button>LOGIN</button>
 </form>
 
 <style>

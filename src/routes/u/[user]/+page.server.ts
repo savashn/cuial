@@ -35,8 +35,8 @@ export const actions = {
 		const data = await request.formData();
 		const name = data.get('name') as string;
 		const email = data.get('email') as string;
-		const notification = Number(data.get('notification'));
-		const confirmation = Number(data.get('confirmation'));
+		const notification = data.get('notification');
+		const confirmation = data.get('confirmation');
 
 		const token = cookies.get('x-auth-token');
 
@@ -44,8 +44,6 @@ export const actions = {
 
 		if (name.trim() === '') errors.name = 'Name is required';
 		if (email.trim() === '') errors.email = 'Email is required';
-		if (isNaN(notification)) errors.notification = 'Notification must be a number';
-		if (isNaN(confirmation)) errors.confirmation = 'Confirmation must be a number';
 
 		if (Object.keys(errors).length > 0) {
 			return (changePassword = false), (editProfile = true), fail(400, { errors });
@@ -73,7 +71,7 @@ export const actions = {
 			);
 		}
 
-		return { changePassword: false, editProfile: true, msg: await res.text() };
+		return { changePassword: false, editProfile: true, msg: await res.text(), formType: 'profile' };
 	},
 	delete: async ({ fetch, cookies, params }) => {
 		const errors: Record<string, string> = {};
@@ -89,12 +87,14 @@ export const actions = {
 
 		if (!res.ok) {
 			errors.error = msg;
-			return fail(400, { errors, formType: 'profile' });
+			return (
+				(changePassword = false), (editProfile = true), fail(400, { errors, formType: 'profile' })
+			);
 		}
 
 		cookies.delete('x-auth-token', { path: '/' });
 
-		redirect(304, '/');
+		redirect(302, '/');
 	},
 	password: async ({ request, fetch, cookies }) => {
 		const data = await request.formData();
@@ -111,7 +111,9 @@ export const actions = {
 			errors.rePassword = 'Passwords must match';
 
 		if (Object.keys(errors).length > 0) {
-			return (editProfile = false), (changePassword = true), fail(400, { errors });
+			return (
+				(editProfile = false), (changePassword = true), fail(400, { errors, formType: 'password' })
+			);
 		}
 
 		const res = await fetch(`${API_URI}/put/password`, {

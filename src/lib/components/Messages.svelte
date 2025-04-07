@@ -2,9 +2,13 @@
 	import type { PageProps } from '../../routes/u/$types';
 	import { applyAction, enhance } from '$app/forms';
 	import { fly } from 'svelte/transition';
+	import Modal from './Modal.svelte';
 	import '$lib/styles/button.css';
+	import '$lib/styles/checkbox.css';
 
 	let { data, form }: PageProps = $props();
+
+	let modal = $state(false);
 
 	let openId = $state<string | null>(null);
 	let editingId = $state<number | null>(null);
@@ -101,11 +105,25 @@
 							></textarea>
 						</label>
 
-						<div class="buttons">
-							<button class="save-btn">Save</button>
-							<button onclick={() => (editingId = null)}>Cancel</button>
-							<button class="delete-btn" formaction="?/delete">Delete</button>
+						<div class="checkbox-container">
+							<label class="checkbox-label">
+								<input type="checkbox" name="sendPreview" value="true" class="checkbox-input" />
+								<span class="checkbox-custom"></span>
+								<span class="checkbox-text">Send me a preview mail of my message</span>
+							</label>
 						</div>
+
+						<div class="buttons">
+							<button type="submit" class="save-btn">SAVE</button>
+							<button type="submit" onclick={() => (editingId = null)}>CANCEL</button>
+							<button type="button" class="delete-btn" onclick={() => (modal = true)}>
+								DELETE
+							</button>
+						</div>
+
+						{#if modal}
+							<Modal bind:modal text="Are you sure you want to delete this message?" />
+						{/if}
 					</form>
 				{:else}
 					<!-- Normal Mode -->
@@ -114,7 +132,7 @@
 					<span class="bold">Text:</span>
 					<p class="text">{v.text}</p>
 					<div class="buttons">
-						<button onclick={() => startEditing(v._id, v.to, v.subject, v.text)}>Edit</button>
+						<button onclick={() => startEditing(v._id, v.to, v.subject, v.text)}>EDIT</button>
 					</div>
 				{/if}
 			</div>

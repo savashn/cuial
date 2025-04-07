@@ -3,8 +3,11 @@
 	import '$lib/styles/button.css';
 	import '$lib/styles/form.css';
 	import { fly } from 'svelte/transition';
+	import Modal from './Modal.svelte';
 
 	let { data, form }: PageProps = $props();
+
+	let modal = $state(false);
 </script>
 
 <form
@@ -63,7 +66,7 @@
 			type="number"
 			name="notification"
 			min="1"
-			value={data.data.notification}
+			bind:value={data.data.notification}
 			class={form?.errors?.notification ? 'error' : ''}
 		/>
 		{#if form?.errors?.notification}
@@ -78,7 +81,7 @@
 			type="number"
 			name="confirmation"
 			min="1"
-			value={data.data.confirmation}
+			bind:value={data.data.confirmation}
 			class={form?.errors?.confirmation ? 'error' : ''}
 		/>
 
@@ -89,9 +92,14 @@
 	</label>
 
 	<div class="buttons">
-		<button>Save Changes</button>
-		<button class="delete-btn" formaction="?/delete">Delete My Account</button>
+		<button>SAVE CHANGES</button>
+		<button type="button" class="delete-btn" onclick={() => (modal = true)}>
+			DELETE MY ACCOUNT
+		</button>
 	</div>
+	{#if modal}
+		<Modal bind:modal text="Are you sure you want to delete your account?" />
+	{/if}
 </form>
 
 <div class="info">
@@ -99,7 +107,7 @@
 		* A countdown to check if you are alive. You will receive an email when the countdown is over.
 		30 days by default.
 	</p>
-	<p>** A countdown to confirm that you are still alive. 3 day by default.</p>
+	<p>** A countdown to confirm that you are still alive. 3 days by default.</p>
 </div>
 
 <style>

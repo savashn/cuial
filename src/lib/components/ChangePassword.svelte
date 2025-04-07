@@ -62,6 +62,6 @@
 	</label>
 
 	<div class="buttons">
-		<button>Save Changes</button>
+		<button>SAVE CHANGES</button>
 	</div>
 </form>

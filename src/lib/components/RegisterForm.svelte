@@ -70,7 +70,7 @@
 			/>
 		</label>
 	</div>
-	<button>Register</button>
+	<button>REGISTER</button>
 </form>
 
 <style>
