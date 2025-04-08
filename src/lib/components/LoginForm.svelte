@@ -58,19 +58,30 @@
 			placeholder={form?.formType === 'login' && form?.errors?.password ? form.errors.password : ''}
 		/>
 	</label>
-	<button type="button" class="forgot" onclick={handleForgotPassword}>Forgot my password</button>
+	<div class="forgot-container">
+		<button type="button" class="forgot" onclick={handleForgotPassword}>Forgot my password</button>
+	</div>
 	<button>LOGIN</button>
 </form>
 
 <style>
+	.forgot-container {
+		width: 100%;
+		text-align: right;
+	}
+
 	.forgot {
-		width: 50%;
-		margin: auto;
+		background: transparent;
+		width: fit-content;
 		color: white;
 		text-decoration: none;
 		position: relative;
 		border: none;
-		font-size: large;
+		font-size: 1rem;
+		padding: 0;
+		cursor: pointer;
+		margin: 0;
+		text-align: right;
 	}
 
 	.forgot:hover {

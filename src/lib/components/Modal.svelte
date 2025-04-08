@@ -29,10 +29,10 @@
 				style="border-color: rgb(4, 71, 94);"
 				onclick={() => (modal = false)}
 			>
-				Cancel
+				CANCEL
 			</button>
 			<button type="submit" class="delete-btn" style="border-color: darkred" formaction="?/delete">
-				Confirm
+				DELETE
 			</button>
 		</div>
 	</div>
