@@ -56,7 +56,7 @@
 					>
 						{#if form?.formType === 'put' && form?.errors}
 							<div class="msg error">
-								{#each Object.entries(form.errors) as [field, message]}
+								{#each Object.values(form.errors) as message (message)}
 									<p>{message}</p>
 								{/each}
 							</div>
