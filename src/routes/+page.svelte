@@ -52,9 +52,6 @@
 <br />
 <h3>Leave A Last Message To The People You Love</h3>
 
-<br />
-<br />
-
 <div class="buttons">
 	<button onclick={() => openLogin()} class={login ? 'active' : ''}>LOGIN</button>
 	<button onclick={() => openRegister()} class={register ? 'active' : ''}>REGISTER</button>
@@ -79,11 +76,11 @@
 		justify-content: center;
 		align-items: center;
 		grid: 2;
-		margin: 2rem;
+		margin: 1rem;
 	}
 
 	h3 {
-		font-size: 2.5rem;
+		font-size: 2rem;
 		text-decoration: underline;
 	}
 
