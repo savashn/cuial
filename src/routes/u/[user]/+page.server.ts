@@ -35,8 +35,8 @@ export const actions = {
 		const data = await request.formData();
 		const name = data.get('name') as string;
 		const email = data.get('email') as string;
-		const notification = data.get('notification');
-		const confirmation = data.get('confirmation');
+		const notification = Number(data.get('notification'));
+		const confirmation = Number(data.get('confirmation'));
 
 		const token = cookies.get('x-auth-token');
 

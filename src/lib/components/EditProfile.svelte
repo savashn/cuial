@@ -66,7 +66,7 @@
 			type="number"
 			name="notification"
 			min="1"
-			bind:value={data.data.notification}
+			value={data.data.notification}
 			class={form?.errors?.notification ? 'error' : ''}
 		/>
 		{#if form?.errors?.notification}
@@ -81,7 +81,7 @@
 			type="number"
 			name="confirmation"
 			min="1"
-			bind:value={data.data.confirmation}
+			value={data.data.confirmation}
 			class={form?.errors?.confirmation ? 'error' : ''}
 		/>
 
