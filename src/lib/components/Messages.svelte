@@ -35,7 +35,7 @@
 				<p>{v.subject}</p>
 				<span>{openId === v._id ? '▲' : '▼'}</span>
 			</button>
-			<div class="accordion-content" style="max-height: {openId === v._id ? '100vh' : '0'};">
+			<div class="accordion-content" style="max-height: {openId === v._id ? 'none' : '0'};">
 				<br />
 				{#if editingId === v._id}
 					<!-- Editing Mode -->
@@ -99,10 +99,10 @@
 							<br />
 							<textarea
 								name="text"
-								value={v.text}
 								class={form?.formType === 'put' && form?.errors?.text ? 'error' : ''}
 								placeholder={form?.formType === 'put' && form?.errors?.text ? form.errors.text : ''}
-							></textarea>
+								>{v.text}</textarea
+							>
 						</label>
 
 						<div class="checkbox-container">
@@ -175,7 +175,6 @@
 
 	.accordion-header {
 		background-color: transparent;
-		color: black;
 		padding: 1rem;
 		cursor: pointer;
 		display: flex;
@@ -212,11 +211,5 @@
 		flex-direction: column;
 		justify-content: start;
 		align-items: start;
-	}
-
-	@media (max-width: 768px) {
-		.accordion {
-			width: 100%;
-		}
 	}
 </style>

@@ -33,10 +33,16 @@ export const actions = {
 		const to = data.get('to');
 		const subject = data.get('subject');
 		const text = data.get('text');
-		const sendInfo = data.get('sendInfo');
-		const sendPreview = data.get('sendPreview');
+		const info = data.get('sendInfo');
+		const preview = data.get('sendPreview');
 
 		const token = cookies.get('x-auth-token');
+
+		let sendInfo = false;
+		let sendPreview = false;
+
+		if (info) sendInfo = true;
+		if (preview) sendPreview = true;
 
 		const errors: Record<string, string> = {};
 
@@ -68,7 +74,7 @@ export const actions = {
 			return (newLetter = true), (letters = false), fail(400, { errors, formType: 'post' });
 		}
 
-		return { formType: 'post', msg: await res.text() };
+		return (letters = true), (newLetter = false), { formType: 'post', msg: await res.text() };
 	},
 	put: async ({ request, fetch, cookies }) => {
 		const data = await request.formData();
@@ -76,7 +82,7 @@ export const actions = {
 		const to = data.get('to');
 		const subject = data.get('subject');
 		const text = data.get('text');
-		const sendPreview = data.get('sendPreview');
+		const preview = data.get('sendPreview');
 
 		const token = cookies.get('x-auth-token');
 
@@ -85,6 +91,9 @@ export const actions = {
 		if (!to) errors.to = 'To is required';
 		if (!subject) errors.subject = 'Subject is required';
 		if (!text) errors.text = 'Text is required';
+
+		let sendPreview = false;
+		if (preview) sendPreview = true;
 
 		if (Object.keys(errors).length > 0) {
 			return (newLetter = true), (letters = false), fail(400, { errors, formType: 'put' });
@@ -110,7 +119,7 @@ export const actions = {
 			return (newLetter = false), (letters = true), fail(400, { errors, formType: 'put' });
 		}
 
-		return { msg: await res.text() };
+		return (letters = true), (newLetter = false), { msg: await res.text() };
 	},
 	delete: async ({ request, fetch, cookies }) => {
 		const data = await request.formData();
