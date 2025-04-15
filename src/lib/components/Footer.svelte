@@ -1,16 +1,21 @@
 <script lang="ts">
-	import type { LayoutData } from '../../routes/u/$types';
-	let { data }: { data?: LayoutData } = $props();
+	let props = $props();
+	const userId: string = props.userId;
 </script>
 
 <footer>
 	<span class="copyright">CUIAL &copy; {new Date().getFullYear()}</span>
 	<div class="links">
-		<a href="https://github.com/savashn/cuial">Github</a>
-		<a href="/contact">Contact</a>
-		{#if data}
-			<a href={`/u/${data.userId}`}>My Profile</a>
-			<a href={`verify?logout=${data.userId}`}>Logout</a>
+		{#if userId}
+			<a href="/u">Messages</a>
+			<a href={`/u/${userId}`}>Profile</a>
+			<a href="/contact">Contact</a>
+			<a href="https://github.com/savashn/cuial">Github</a>
+			<a href={`/verify?logout=${userId}`}>Logout</a>
+		{:else}
+			<a href="/">Homepage</a>
+			<a href="/contact">Contact</a>
+			<a href="https://github.com/savashn/cuial">Github</a>
 		{/if}
 	</div>
 </footer>
@@ -18,8 +23,7 @@
 <style>
 	footer {
 		font-size: 1.2rem;
-		margin-top: 20rem;
-		margin-bottom: 2rem;
+		margin: 5rem auto 2rem auto;
 		text-align: center;
 		display: flex;
 		flex-direction: column;
@@ -40,7 +44,7 @@
 
 	@media (max-width: 768px) {
 		footer {
-			margin-top: 15rem;
+			font-size: 1rem;
 		}
 	}
 </style>

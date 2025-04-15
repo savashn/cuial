@@ -40,6 +40,7 @@
 		>CHANGE PASSWORD</button
 	>
 </div>
+<br />
 
 {#if editProfile}
 	<EditProfile {data} {form} />

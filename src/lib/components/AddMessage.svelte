@@ -56,7 +56,9 @@
 		<label class="checkbox-label">
 			<input type="checkbox" name="sendInfo" value="true" class="checkbox-input" />
 			<span class="checkbox-custom"></span>
-			<span class="checkbox-text">Send an information email to the receiver</span>
+			<span class="checkbox-text"
+				>Send an information email to the receiver (it does not include your message)</span
+			>
 		</label>
 	</div>
 	<div class="checkbox-container">

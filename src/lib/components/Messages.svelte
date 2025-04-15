@@ -26,7 +26,7 @@
 		No messages found
 	{/if}
 
-	{#each data.data as v (v.id)}
+	{#each data.data as v (v._id)}
 		<div class="accordion">
 			<button
 				class={`accordion-header ${openId === v._id ? 'active' : ''}`}
@@ -143,10 +143,10 @@
 <style>
 	.text {
 		white-space: pre-wrap;
+		overflow-wrap: anywhere;
+		word-break: break-word;
 		font-size: 1.4rem;
-		word-wrap: break-word;
 		max-width: 100%;
-		overflow-wrap: break-word;
 		margin: 10px 0;
 		text-align: left;
 	}
@@ -156,7 +156,7 @@
 	}
 
 	.wrapper {
-		margin-top: 3rem;
+		margin: 2rem auto 5rem auto;
 		width: 100%;
 		display: flex;
 		flex-direction: column;
@@ -211,5 +211,11 @@
 		flex-direction: column;
 		justify-content: start;
 		align-items: start;
+	}
+
+	@media (max-width: 768px) {
+		.text {
+			font-size: 1rem;
+		}
 	}
 </style>

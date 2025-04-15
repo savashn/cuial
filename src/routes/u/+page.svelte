@@ -42,6 +42,7 @@
 	<button onclick={() => openLetters()} class={letters ? 'active' : ''}>MY LETTERS</button>
 	<button onclick={() => openNewLetter()} class={newLetter ? 'active' : ''}>NEW LETTER</button>
 </div>
+<br />
 
 {#if letters}
 	<Messages {data} {form} />

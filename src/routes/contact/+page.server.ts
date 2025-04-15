@@ -1,6 +1,22 @@
+import type { PageServerLoad } from './$types';
 import { fail } from '@sveltejs/kit';
 import type { Actions } from './$types';
 import { API_URI } from '$env/static/private';
+
+export const load: PageServerLoad = async ({ cookies }) => {
+	const token = cookies.get('x-auth-token');
+
+	if (!token) {
+		return;
+	}
+
+	const decodedToken = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
+	const userId: string = decodedToken.id;
+
+	return {
+		userId
+	};
+};
 
 export const actions = {
 	default: async ({ request, fetch }) => {

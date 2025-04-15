@@ -27,19 +27,17 @@
 		font-weight: 400;
 		font-style: normal;
 		font-size: 1.2rem;
-		margin: -15rem auto;
+		margin: -15rem auto auto auto;
 		width: 60%;
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
 		flex-direction: column;
-		min-height: 70vh;
 	}
 
 	@media (max-width: 768px) {
 		main {
 			width: 85%;
-			margin: -12rem auto;
 			font-size: 1rem;
 		}
 	}

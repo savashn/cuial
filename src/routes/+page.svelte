@@ -42,7 +42,6 @@
 		content="See You In Another Life. Send a last message to the people you love after you died."
 	/>
 </svelte:head>
-
 <p>
 	Imagine that you are dead now. What would your last words be to the people you've loved? Would
 	they be 'I love you'? They might be, or they might not — death doesn't care. Death is real (more
@@ -76,7 +75,7 @@
 		justify-content: center;
 		align-items: center;
 		grid: 2;
-		margin: 1rem;
+		margin: 1rem auto 10rem auto;
 	}
 
 	h3 {
